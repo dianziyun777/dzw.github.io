@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title>歌堂女书</title>
+    <link rel="stylesheet" href="./common.css?v=3">
+    <style>
+        .transitionDiv,.mainDiv,.resultDiv{
+            display: none;
+        }
+    </style>
+    <script>
+        var loadImg2 = new Image();
+        loadImg2.src = './image/progress.png';
+    </script>
+    
+</head>
+<body>
+    <audio class="touch_audio" src="./music/touch.mp3"></audio>
+    <!-- loading -->
+    <div class="contianer loadingDiv">
+        <img class="noclick loadbgImage" src="./image/bg_loading.png" alt="">
+        <img class="noclick fan" src="./image/1.png" alt="">
+        <img class="noclick fan" style="display: none;" src="./image/2.png" alt="">
+        <img class="noclick fan" style="display: none;" src="./image/3.png" alt="">
+        <img class="noclick fan" style="display: none;" src="./image/4.png" alt="">
+        <img class="noclick fan" style="display: none;" src="./image/5.png" alt="">
+        <img class="noclick fan" style="display: none;" src="./image/6.png" alt="">
+        <img class="noclick fan" style="display: none;" src="./image/7.png" alt="">
+        <!-- 进度条颜色动态 -->
+        <div class="loading_progress">              
+            <!-- 进度条固定图片-->
+            <div class="progress_bar"></div>
+        </div>
+        <p class="load_num"><span id="progress"></span>%</p>
+        <img class="confirm" src="./image/confirm.png" alt="">
+    </div>
+
+    <!-- transition -->
+    <!-- <div class="contianer transitionDiv">
+        <img class="noclick tbgImage loading_img" src="./image/bg_transition.png" alt="">
+        <img class="noclick radio loading_img" src="./image/radio.png" alt="">
+        <div class="noclick name">
+            <img class="name_img" src="./image/name.png" alt="">
+        </div>
+        <audio class="transition_audio" src="./music/transition.m4a" loop></audio>
+        <div class="button">
+            <img class="bt_book" src="./image/bt_book.png" data-index="0" alt="">
+            <img class="bt_song" src="./image/bt_song.png" data-index="1" alt="">
+            <img class="bt_word" src="./image/bt_word.png" data-index="2" alt="">
+        </div>
+        <img class="noclick tip" src="./image/tip.png" alt="">
+        <img class="noclick arrow" src="./image/arrow.png" alt="">
+        <div class="disc"></div>
+        <div class="info">
+            <img class="noclick info_book" src="./image/info_book.png" alt="">
+            <img class="noclick info_song" src="./image/info_song.png" alt="">
+            <img class="noclick info_word" src="./image/info_word.png" alt="">
+        </div>
+    </div> -->
+    <div class="contianer transitionDiv">
+        <img class="noclick tbgImage loading_img" src="./image/bg_transition.png" alt="">
+        <div class="bar_wrap">
+            <img class="noclick bar" src="./image/bar.png" alt="">
+            <div class="btns">
+                <div class="bar_btn" onclick="viewDesc('bt_book')">
+                    <img class="btn_img bt_book" src="./image/bt_book.png">
+                </div>
+                <div class="bar_btn" onclick="viewDesc('bt_song')">
+                    <img class="btn_img bt_song" src="./image/bt_song.png" data-index="1" alt="">
+                </div>
+                <div class="bar_btn" onclick="viewDesc('bt_word')">
+                    <img class="btn_img bt_word" src="./image/bt_word.png" data-index="2" alt="">
+                </div>
+            </div>
+        </div>
+        
+        <img class="noclick tip" src="./image/tip.png" alt="">
+        <img class="noclick radio loading_img" src="./image/radio2.png" alt="">
+        <!-- <img class="noclick radio loading_img" src="./image/radio.png" alt=""> -->
+        <div class="noclick name">
+            <img class="name_img" src="./image/name.png" alt="">
+        </div>
+        <img class="noclick float" src="./image/float.png" alt="">
+        <div class="disc"></div>
+        <audio class="transition_audio" src="./music/transition.m4a" loop></audio>
+        <!-- <div class="button">
+            <img class="bt_book" src="./image/bt_book.png" data-index="0" alt="">
+            <img class="bt_song" src="./image/bt_song.png" data-index="1" alt="">
+            <img class="bt_word" src="./image/bt_word.png" data-index="2" alt="">
+        </div> -->
+        <div class="info">
+            <img class="info_desc bt_book_info" src="./image/info_book.png" alt="">
+            <img class="info_desc bt_song_info" src="./image/info_song.png" alt="">
+            <img class="info_desc bt_word_info" src="./image/info_word.png" alt="">
+            <img class="circle" src="./image/circle.png" alt="" onclick="hideInfo()">
+            <img class="return" src="./image/return.png" alt="" onclick="hideInfo()">
+        </div>
+    </div>
+
+    <!-- main -->
+    <div class="contianer mainDiv" style="overflow: hidden;">
+        <div class="content">
+            <img class="noclick bigImage loading_img" src="./image/picture.png" alt="">
+
+            <!-- 音响 -->
+            <img class="noclick dbTrp" src="./image/db_trumpet.png" alt="">
+            <img class="noclick colbar" src="./image/color_bar.gif" alt="">
+            <img class="noclick ltape" src="./image/tape_left.png" alt="">
+            <img class="noclick rtape" src="./image/tape_right.png" alt="">
+            <img class="noclick musicTag intro" src="./image/intro.png" alt="">
+            <img class="noclick ballon" src="./image/ballon.png" alt="">
+
+            <!-- 音符 -->
+            <img class="noclick musicTag onote" src="./image/note_orange.png" alt="">
+            <img class="noclick musicTag bnote" src="./image/note_blue.png" alt="">
+            <img class="noclick musicTag gnote" src="./image/note_green.png" alt="">
+
+            <!-- 河流 -->
+            <img class="noclick wave loading_img" src="./image/wave.gif" alt="">
+
+            <img class="toRes" src="./image/result_to.png" alt="" onclick="copyRight()">
+
+            <div class="clicks">
+                <img class="click0" src="./image/play.png" data-index="0" alt="">
+                <img class="click1" src="./image/play.png" data-index="1" alt="">
+                <img class="click2" src="./image/play.png" data-index="2" alt="">
+                <img class="click3" src="./image/play.png" data-index="3" alt="">
+                <img class="click4" src="./image/play.png" data-index="4" alt="">
+                <img class="click5" src="./image/play.png" data-index="5" alt="">
+                <img class="click6" src="./image/play.png" data-index="6" alt="">
+            </div>
+
+            <div class="audios">
+                <audio class="audio" src="./music/daughter.m4a" loop></audio>
+                <audio class="audio" src="./music/house.mp3" loop></audio>
+                <audio class="audio" src="./music/growth.m4a" loop></audio>
+                <audio class="audio" src="./music/hall.m4a" loop></audio>
+                <audio class="audio" src="./music/snake.m4a" loop></audio>
+                <audio class="audio" src="./music/train.m4a" loop></audio>
+                <audio class="audio" src="./music/vegetable.m4a" loop></audio>
+            </div>
+
+        </div>
+        <div class="mask details">
+            <div class="details_img">
+                <div class="close_detail"></div>
+                <img class="detail_img0" src="./image/daughter.png" data-index="0" alt="">
+                <!-- <img class="detail_img1" src="./image/dress.png" data-index="1" alt=""> -->
+                <img class="detail_img2" src="./image/growth.png" data-index="2" alt="">
+                <img class="detail_img3" src="./image/hall.png" data-index="3" alt="">
+                <img class="detail_img4" src="./image/snake.png" data-index="4" alt="">
+                <img class="detail_img5" src="./image/train.png" data-index="5" alt="">
+                <img class="detail_img6" src="./image/vegettable.png" data-index="6" alt="">
+            </div>
+        </div>
+
+        <!-- 提示 -->
+        <div class="mask mask_tip" onclick="hideTip()">
+            <img class="tip_content" src="./image/mask_tip.png" alt="">
+        </div>
+        <script>
+            /**
+             * 点击音效
+             */
+            var touchFlag = false;
+            document.addEventListener("touchstart",function(){
+                touchFlag = true
+            }, { passive: false });
+            document.addEventListener("touchmove",function(e){
+                touchFlag = false;
+            }, { passive: false });
+            document.addEventListener("touchend",function(e){
+                if(touchFlag) {
+                    document.querySelector('.touch_audio').play();
+                }
+            }, { passive: false });
+            var imgs = document.getElementsByClassName('loading_img');
+            let img_length = imgs.length;
+            let disc = new Image();
+            disc.src = './image/disc.png';
+            let j = 0;
+            let jj = 0;
+            disc.onload = () => {
+                j++;
+            }
+            let progressDom = document.getElementById('progress');
+            let progressBar = document.querySelector('.loading_progress');
+            var progressInt = setInterval(function(){                
+                progressDom.innerText = jj;
+                progressBar.style.width = jj/100*65.3 + 'vw';
+                if((jj < ((j+1)*25)-1) && jj<99){
+                    jj++;
+                }
+                
+            },300)
+            var transition_audio = document.querySelector('.transition_audio');
+            for(let i = 0; i < img_length; i++) {
+                imgs[i].onload = function (e){
+                    j++;
+                    if(j > 3) {
+                        setTimeout(() => {
+                            progressDom.innerText = 100;                            
+                            progressBar.style.width = '65.3vw';
+                            setTimeout(() => {                                
+                                progressBar.style.display = 'none';
+                                document.querySelector('.load_num').style.display = 'none';
+                                document.querySelector('.confirm').style.display = 'block';
+                            }, 250)
+                            clearInterval(progressInt);
+                            // document.querySelector('.loadingDiv').style.display = 'none';
+                            // document.querySelector('.transitionDiv').style.display = 'block';
+                            transition_audio.play();
+                            // play();
+                            
+                            playTransitionAudio();
+                        },1000)
+                    }
+                }
+            }
+        </script>
+    </div>
+
+    <div class="contianer resultDiv">
+        <img class="resBg" src="./image/result.png" alt="">
+        <img class="resBtn" src="./image/result_btn.png" alt="" onclick="resultHome()">
+    </div>
+    
+    <script src="./index.js"></script>
+    <!-- <script src="./vconsole.min.js"></script>
+    <script>
+        var vConsole = new VConsole();
+    </script> -->
+</body>
+</html>
